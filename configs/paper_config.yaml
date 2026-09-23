@@ -1,0 +1,83 @@
+# Phase 1 configuration for the simulator. Values are tagged as either
+# `paper` (stated in Ali & Arslan, 2026) or `assumption` (needed because the
+# paper does not specify the value).
+provenance:
+  paper: "Ali and Arslan, AI-Driven Digital Twins: Optimizing 5G/6G Network Slicing With NTNs (2026)"
+
+simulation:
+  seed: 42                         # assumption
+  step_seconds: 1.0                # assumption
+  duration_steps: 60               # assumption
+
+network:
+  num_ues: 50                      # paper: M = 50
+  total_bandwidth_hz: 20000000     # paper: B = 20 MHz
+  num_resource_blocks: 100         # assumption; allocations are multiples of B / 100
+  minimum_resource_blocks_per_ue: 1 # assumption; prevents zero-rate/starvation numerical failures
+  fbs_speed_mps: 10.0              # paper: v_FBS = 10 m/s
+  fbs_altitude_m: 100.0            # assumption
+  gbs_position_m: [500.0, 500.0, 30.0]  # assumption; included for topology only in Phase 1
+  area_bounds_m: [0.0, 1000.0, 0.0, 1000.0]  # assumption: [xmin, xmax, ymin, ymax]
+  fbs_initial_position_m: [500.0, 500.0, 100.0]  # assumption
+  ue_height_m: 1.5                 # assumption
+  ue_max_speed_mps: 1.4            # assumption
+
+channel:
+  carrier_frequency_hz: 3500000000.0 # assumption
+  rician_k_factor: 6.0              # assumption
+  path_loss_exponent: 2.2           # assumption
+  noise_psd_dbm_per_hz: -174.0      # assumption: thermal-noise reference
+  noise_figure_db: 7.0              # assumption
+  interference_w: 0.0               # assumption: orthogonal RB allocation in Phase 1
+
+power:
+  min_dbm: 5.0                      # assumption
+  max_dbm: 23.0                     # assumption
+  default_dbm: 20.0                 # assumption
+
+traffic:
+  mean_packet_bits: 800000.0        # assumption
+  coefficient_of_variation: 0.35    # assumption
+  processing_delay_s: 0.001         # assumption
+  sync_error_m: 0.0                 # assumption: no Digital Twin exists in Phase 1
+
+digital_twin:
+  sync_interval_steps: 5            # assumption: Δt in simulator steps
+  traffic_ema_alpha: 0.3            # assumption: EMA smoothing factor α
+  fbs_measurement_std_m: 2.0        # assumption: synchronization measurement noise
+  fbs_process_std_mps2: 0.5         # assumption: Kalman process noise
+  sync_error_m_per_bit: 1.0e-6      # assumption: resolves paper's unit ambiguity in e_i / c
+
+reward:
+  bandwidth_change_weight: 0.1      # paper: λ = 0.1
+  sync_error_weight: 0.05           # paper: γ = 0.05 (not the future DDPG discount factor)
+  power_weight: 0.01                # assumption: paper's β is unspecified
+  bandwidth_change_unit_hz: 1000000.0  # assumption: normalize allocations to MHz
+  sync_error_unit_bits: 800000.0    # assumption: normalize error to mean packet size
+  power_unit_w: 1.0                 # assumption
+
+rl:
+  actor_hidden_layers: [256, 128]   # paper
+  critic_hidden_layers: [512, 256, 128]  # paper
+  batch_size: 64                    # paper
+  target_tau: 0.001                 # paper
+  discount_factor: 0.99             # assumption; distinct from paper reward γ
+  actor_learning_rate: 0.0001       # assumption
+  critic_learning_rate: 0.001       # assumption
+  replay_capacity: 100000           # assumption
+  ou_theta: 0.15                    # assumption
+  ou_sigma_start: 0.2               # paper
+  ou_sigma_end: 0.05                # paper
+  ou_decay_episodes: 500            # paper
+
+training:
+  episodes: 1000                    # paper
+  steps_per_episode: 60             # assumption; simulator duration
+  checkpoint_interval: 100          # assumption
+
+baselines:
+  q_learning_rate: 0.01             # paper
+  q_epsilon: 0.1                    # paper
+  discrete_bandwidth_levels: 10     # paper
+  dqn_hidden_layers: [256, 128]     # assumption
+  evaluation_episodes: 10           # assumption; Phase 6 uses multiple seeds
