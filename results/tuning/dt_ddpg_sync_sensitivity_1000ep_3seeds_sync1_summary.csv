@@ -1,0 +1,2 @@
+candidate,sync_interval_steps,training_seeds,episodes_per_seed,average_latency_s_mean,average_latency_s_std,throughput_mbps_mean,throughput_mbps_std,jitter_s_mean,jitter_s_std
+sync_1_step,1,3,1000,0.2724629277801453,0.028265901760411327,191.7622818188449,13.667576265001399,0.11941561275081491,0.008593849815361947

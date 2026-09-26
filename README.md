@@ -1,6 +1,6 @@
 # AI-Driven Digital Twin 5G/6G NTN Slicing
 
-## Current status: Phase 5 implemented
+## Current status: Phase 6 results and visualization implemented
 
 This repository now has a reproducible, modular **physical-network simulator**
 for the first two phases of an implementation based on Ali and Arslan's 2026
@@ -16,6 +16,10 @@ python3 scripts/train_toy_ddpg.py
 python3 scripts/train_dt_ddpg.py
 python3 scripts/run_proportional_fairness.py
 python3 scripts/run_q_learning.py
+python3 scripts/run_all_experiments.py
+python3 scripts/plot_comparison.py
+python3 scripts/tune_dt_ddpg.py --episodes 300 --seeds 3
+python3 scripts/plot_tuning.py
 pytest -q
 ```
 
@@ -36,3 +40,6 @@ See [the Phase 4 technical note](docs/phase4.md) for the integrated DT-DDPG
 decision loop and logged metrics.
 See [the Phase 5 technical note](docs/phase5.md) for equivalent baseline
 conditions and the scalable discrete-action assumption.
+See [the experiment-results note](docs/experiment_results.md) for the first
+completed comparison, the correct interpretation of its results, and how to
+reproduce the chart.

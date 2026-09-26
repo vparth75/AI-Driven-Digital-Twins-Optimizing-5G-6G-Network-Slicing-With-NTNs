@@ -1,0 +1,57 @@
+[
+  {
+    "method": "DT-DDPG",
+    "average_latency_s_mean": 0.34051304343675826,
+    "average_latency_s_std": 0.010013418324190582,
+    "throughput_mbps_mean": 160.3831540366201,
+    "throughput_mbps_std": 3.72254645223076,
+    "resource_utilization_mean": 1.0,
+    "resource_utilization_std": 0.0,
+    "jitter_s_mean": 0.14683233308953683,
+    "jitter_s_std": 0.006978510146656588
+  },
+  {
+    "method": "Standalone DDPG",
+    "average_latency_s_mean": 0.24846795905055377,
+    "average_latency_s_std": 0.005998329863334163,
+    "throughput_mbps_mean": 195.22808875508153,
+    "throughput_mbps_std": 3.36332398139393,
+    "resource_utilization_mean": 1.0,
+    "resource_utilization_std": 0.0,
+    "jitter_s_mean": 0.1024016573962843,
+    "jitter_s_std": 0.0036230610510947646
+  },
+  {
+    "method": "Proportional Fairness",
+    "average_latency_s_mean": 0.2284906731733169,
+    "average_latency_s_std": 0.003309421307020608,
+    "throughput_mbps_mean": 199.36098924848363,
+    "throughput_mbps_std": 3.5045841981506296,
+    "resource_utilization_mean": 0.9908333333333333,
+    "resource_utilization_std": 0.0011005049346146539,
+    "jitter_s_mean": 0.14907290982106347,
+    "jitter_s_std": 0.002614293485993955
+  },
+  {
+    "method": "Q-learning",
+    "average_latency_s_mean": 0.2097983257256769,
+    "average_latency_s_std": 0.003926429061961734,
+    "throughput_mbps_mean": 206.10468952684082,
+    "throughput_mbps_std": 3.8925791679050654,
+    "resource_utilization_mean": 1.0,
+    "resource_utilization_std": 0.0,
+    "jitter_s_mean": 0.08903139786000838,
+    "jitter_s_std": 0.00311343481166901
+  },
+  {
+    "method": "DQN",
+    "average_latency_s_mean": 0.2059662090081375,
+    "average_latency_s_std": 0.0043776661901352,
+    "throughput_mbps_mean": 205.43865534871415,
+    "throughput_mbps_std": 3.902131172907682,
+    "resource_utilization_mean": 1.0,
+    "resource_utilization_std": 0.0,
+    "jitter_s_mean": 0.085197640459274,
+    "jitter_s_std": 0.0043545289413106925
+  }
+]

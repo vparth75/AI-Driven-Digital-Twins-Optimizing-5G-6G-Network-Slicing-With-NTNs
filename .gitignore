@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Reproducible final artifacts are kept; large, regenerable training snapshots are not.
+results/checkpoints/
